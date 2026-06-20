@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FAF6F0;
+  color: #2A2233;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.spotlight {
+  background:
+    radial-gradient(closest-side, rgba(184, 162, 217, 0.55), rgba(184, 162, 217, 0) 70%);
+  filter: blur(10px);
+}
+
+.eyebrow {
+  font-family: var(--font-jakarta);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background-color: #5B4A82;
+  color: #FAF6F0;
+  transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), background-color 0.25s ease;
+}
+.btn-primary:hover {
+  background-color: #453761;
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  border: 1.5px solid #5B4A82;
+  color: #5B4A82;
+  transition: all 0.25s ease;
+}
+.btn-ghost:hover {
+  background-color: #5B4A82;
+  color: #FAF6F0;
+}
+
+.focus-ring:focus-visible {
+  outline: 2.5px solid #5B4A82;
+  outline-offset: 3px;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
