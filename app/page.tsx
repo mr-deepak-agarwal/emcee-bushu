@@ -1,10 +1,12 @@
 import Link from "next/link";
-import { events, testimonials, site } from "@/lib/data";
+import { testimonials } from "@/lib/data";
 import Testimonials from "@/components/Testimonials";
 import InstagramFeed from "@/components/InstagramFeed";
 import Stats from "@/components/Stats";
 import Packages from "@/components/Packages";
 import FAQ from "@/components/FAQ";
+import ServicesScroller from "@/components/ServicesScroller";
+import Reveal from "@/components/Reveal";
 
 export default function Home() {
   return (
@@ -32,10 +34,10 @@ export default function Home() {
             </p>
             <div className="animate-rise mt-9 flex flex-wrap items-center gap-4 [animation-delay:240ms]">
               <Link href="/book" className="focus-ring rounded-full bg-gold px-9 py-4 text-sm font-bold text-plum transition-transform hover:-translate-y-0.5">
-                Book Me 🎤
+                Reserve a Date 🎤
               </Link>
               <Link href="/events" className="focus-ring rounded-full border-[1.5px] border-cream/40 px-9 py-4 text-sm font-semibold text-cream transition-colors hover:bg-cream/10">
-                See Events
+                See Services
               </Link>
             </div>
           </div>
@@ -51,26 +53,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Announcer ticker */}
-      <div className="overflow-hidden border-y border-lavender-200/60 bg-lavender-600 py-3">
-        <div className="marquee-track">
-          {[...events, ...events].map((e, i) => (
-            <span
-              key={i}
-              className="mx-6 shrink-0 font-body text-sm font-semibold uppercase tracking-[0.2em] text-cream/90"
-            >
-              {e.title} ✦
-            </span>
-          ))}
-        </div>
-      </div>
-
       <Stats />
 
       {/* What this means */}
       <section className="mx-auto max-w-5xl px-6 py-20 md:py-28">
         <div className="grid gap-12 md:grid-cols-2 md:items-center">
-          <div>
+          <Reveal>
             <p className="eyebrow text-lavender-600">No more booking through DMs</p>
             <h2 className="mt-4 font-display text-3xl leading-tight text-plum md:text-4xl">
               A professional page for the MC who's already booked solid.
@@ -81,51 +69,29 @@ export default function Home() {
               every enquiry lands straight in your inbox — organised,
               instant, and impossible to miss.
             </p>
-          </div>
-          <div className="rounded-3xl bg-blush/60 p-8">
-            <ul className="space-y-4 text-plum/80">
-              <li className="flex items-start gap-3">
-                <span className="mt-1 text-lavender-600">✦</span>
-                Live booking form with instant email + WhatsApp alert
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-1 text-lavender-600">✦</span>
-                Auto-reply so every client hears back in seconds
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-1 text-lavender-600">✦</span>
-                Built mobile-first for the way your audience finds you
-              </li>
-            </ul>
-          </div>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <div className="rounded-3xl bg-blush/60 p-8">
+              <ul className="space-y-4 text-plum/80">
+                <li className="flex items-start gap-3">
+                  <span className="mt-1 text-lavender-600">✦</span>
+                  Live booking form with instant email + WhatsApp alert
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-1 text-lavender-600">✦</span>
+                  Auto-reply so every client hears back in seconds
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-1 text-lavender-600">✦</span>
+                  Built mobile-first for the way your audience finds you
+                </li>
+              </ul>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Event highlights */}
-      <section className="bg-cream-deep px-6 py-20 md:py-28">
-        <div className="mx-auto max-w-6xl">
-          <div className="flex items-end justify-between">
-            <h2 className="font-display text-3xl text-plum md:text-4xl">
-              Every occasion, <span className="italic text-lavender-600">every beat.</span>
-            </h2>
-            <Link href="/events" className="focus-ring hidden text-sm font-semibold text-lavender-600 hover:underline md:block">
-              View all events →
-            </Link>
-          </div>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 md:grid-cols-3">
-            {events.slice(0, 6).map((e) => (
-              <div key={e.title} className="rounded-2xl border border-lavender-200/70 bg-cream p-6 transition-shadow hover:shadow-lg hover:shadow-lavender-200/50">
-                <span className="text-3xl">{e.icon}</span>
-                <h3 className="mt-3 font-display text-xl text-plum">{e.title}</h3>
-                <p className="mt-2 text-sm text-plum/65">{e.blurb}</p>
-              </div>
-            ))}
-          </div>
-          <Link href="/events" className="focus-ring mt-8 block text-center text-sm font-semibold text-lavender-600 hover:underline md:hidden">
-            View all events →
-          </Link>
-        </div>
-      </section>
+      <ServicesScroller />
 
       <Testimonials items={testimonials} />
       <Packages />
@@ -133,17 +99,19 @@ export default function Home() {
       <FAQ />
 
       {/* CTA */}
-      <section className="px-6 py-20 text-center md:py-28">
-        <h2 className="font-display text-3xl text-plum md:text-4xl">
-          Ready to make your event <span className="italic text-lavender-600">unforgettable?</span>
-        </h2>
-        <p className="mx-auto mt-4 max-w-md text-plum/70">
-          Tell me your date and what you're planning — I'll reply within 24 hours.
-        </p>
-        <Link href="/book" className="focus-ring btn-primary mt-8 inline-block rounded-full px-9 py-4 text-sm font-semibold">
-          Book Me 🎤
-        </Link>
-      </section>
+      <Reveal>
+        <section className="px-6 py-20 text-center md:py-28">
+          <h2 className="font-display text-3xl text-plum md:text-4xl">
+            Ready to make your event <span className="italic text-lavender-600">unforgettable?</span>
+          </h2>
+          <p className="mx-auto mt-4 max-w-md text-plum/70">
+            Tell me your date and what you're planning — I'll reply within 24 hours.
+          </p>
+          <Link href="/book" className="focus-ring btn-primary mt-8 inline-block rounded-full px-9 py-4 text-sm font-semibold">
+            Reserve a Date 🎤
+          </Link>
+        </section>
+      </Reveal>
     </>
   );
 }

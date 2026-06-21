@@ -1,7 +1,7 @@
 import BookingForm from "@/components/BookingForm";
 
 export const metadata = {
-  title: "Book Me — Emcee Bushu",
+  title: "Reserve a Date — Emcee Bushu",
   description: "Send Emcee Bushu a booking enquiry for your wedding, corporate event, or celebration.",
 };
 

@@ -7,7 +7,6 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/events", label: "Events" },
   { href: "/about", label: "About" },
-  { href: "/book", label: "Book Me" },
 ];
 
 export default function Nav() {
@@ -34,7 +33,7 @@ export default function Nav() {
             href="/book"
             className="focus-ring btn-primary rounded-full px-5 py-2.5 text-sm font-semibold"
           >
-            Book Me
+            Reserve a Date
           </Link>
         </nav>
 
@@ -69,6 +68,13 @@ export default function Nav() {
               {l.label}
             </Link>
           ))}
+          <Link
+            href="/book"
+            onClick={() => setOpen(false)}
+            className="focus-ring btn-primary mt-2 rounded-full px-5 py-3 text-center text-sm font-semibold"
+          >
+            Reserve a Date
+          </Link>
         </nav>
       )}
     </header>

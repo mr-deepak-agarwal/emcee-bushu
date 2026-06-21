@@ -68,7 +68,7 @@ export default function AboutPage() {
           I bring the vibe. <span className="italic text-lavender-600">You make the memories.</span>
         </h2>
         <Link href="/book" className="focus-ring btn-primary mt-7 inline-block rounded-full px-9 py-4 text-sm font-semibold">
-          Book Me 🎤
+          Reserve a Date 🎤
         </Link>
       </section>
     </>

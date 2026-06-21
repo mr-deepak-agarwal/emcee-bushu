@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { events } from "@/lib/data";
+import EventsGrid from "@/components/EventsGrid";
 
 export const metadata = {
   title: "Events — Emcee Bushu",
@@ -21,24 +21,7 @@ export default function EventsPage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-          {events.map((e) => (
-            <div
-              key={e.title}
-              className="flex flex-col rounded-2xl border border-lavender-200/70 bg-cream-deep p-7 transition-shadow hover:shadow-lg hover:shadow-lavender-200/50"
-            >
-              <span className="text-3xl">{e.icon}</span>
-              <h2 className="mt-4 font-display text-2xl text-plum">{e.title}</h2>
-              <p className="mt-2 flex-1 text-sm text-plum/65">{e.blurb}</p>
-              <Link
-                href="/book"
-                className="focus-ring mt-5 text-sm font-semibold text-lavender-600 hover:underline"
-              >
-                Book for {e.title.toLowerCase()} →
-              </Link>
-            </div>
-          ))}
-        </div>
+        <EventsGrid />
       </section>
 
       <section className="px-6 pb-24 text-center">
@@ -49,7 +32,7 @@ export default function EventsPage() {
           If it's not on this list, ask anyway — chances are I've hosted it.
         </p>
         <Link href="/book" className="focus-ring btn-primary mt-7 inline-block rounded-full px-9 py-4 text-sm font-semibold">
-          Book Me 🎤
+          Reserve a Date 🎤
         </Link>
       </section>
     </>

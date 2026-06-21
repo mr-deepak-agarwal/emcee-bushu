@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const packages = [
   {
@@ -53,9 +56,14 @@ export default function Packages() {
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {packages.map((p) => (
-            <div
+          {packages.map((p, i) => (
+            <motion.div
               key={p.name}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.55, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: p.featured ? -16 : -6 }}
               className={`relative flex flex-col rounded-3xl p-8 ${
                 p.featured
                   ? "bg-plum text-cream shadow-2xl shadow-plum/30 md:-translate-y-3"
@@ -87,7 +95,7 @@ export default function Packages() {
               >
                 Enquire — {p.name}
               </Link>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

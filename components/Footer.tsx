@@ -19,7 +19,7 @@ export default function Footer() {
             <li><Link className="focus-ring hover:text-lavender-600" href="/">Home</Link></li>
             <li><Link className="focus-ring hover:text-lavender-600" href="/events">Events</Link></li>
             <li><Link className="focus-ring hover:text-lavender-600" href="/about">About</Link></li>
-            <li><Link className="focus-ring hover:text-lavender-600" href="/book">Book Me</Link></li>
+            <li><Link className="focus-ring hover:text-lavender-600" href="/book">Reserve a Date</Link></li>
           </ul>
         </div>
 
