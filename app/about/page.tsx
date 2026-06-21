@@ -1,5 +1,6 @@
 import Link from "next/link";
 import InstagramFeed from "@/components/InstagramFeed";
+import PillarCards from "@/components/PillarCards";
 
 export const metadata = {
   title: "About — Emcee Bushu",
@@ -35,30 +36,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-cream-deep px-6 py-20">
-        <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-3">
-          <div className="rounded-2xl bg-cream p-7">
-            <span className="text-2xl">🎤</span>
-            <h3 className="mt-3 font-display text-xl text-plum">Engaging presence</h3>
-            <p className="mt-2 text-sm text-plum/65">
-              A stage presence that pulls a room in within the first minute and keeps it there.
-            </p>
-          </div>
-          <div className="rounded-2xl bg-cream p-7">
-            <span className="text-2xl">🤝</span>
-            <h3 className="mt-3 font-display text-xl text-plum">Connects every crowd</h3>
-            <p className="mt-2 text-sm text-plum/65">
-              From kids to corporate execs — energy calibrated to whoever's in the room.
-            </p>
-          </div>
-          <div className="rounded-2xl bg-cream p-7">
-            <span className="text-2xl">💃</span>
-            <h3 className="mt-3 font-display text-xl text-plum">Also a choreographer</h3>
-            <p className="mt-2 text-sm text-plum/65">
-              Personalised first-dance and group choreography, traditional, contemporary, or fusion.
-            </p>
-          </div>
-        </div>
+      <section className="bg-cream-deep py-20">
+        <PillarCards />
       </section>
 
       <InstagramFeed />
