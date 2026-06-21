@@ -9,26 +9,29 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <>
-      <section className="px-6 pb-16 pt-16 md:pt-24">
+      <section className="bg-plum px-6 pb-20 pt-20 md:pt-28">
         <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-2 md:items-center">
           <div>
-            <p className="eyebrow text-lavender-600">About Bushu</p>
-            <h1 className="mt-4 font-display text-4xl leading-tight text-plum md:text-5xl">
+            <p className="eyebrow text-gold">About Bushu</p>
+            <h1 className="mt-4 font-display text-4xl leading-tight text-cream md:text-6xl">
               I don't just host events —{" "}
-              <span className="italic text-lavender-600">I create experiences.</span>
+              <span className="italic text-lavender-300">I create experiences.</span>
             </h1>
-            <p className="mt-6 text-plum/70">
+            <p className="mt-6 text-cream/70">
               I'm Bushu — an MC and choreographer who's spent years on stages
               across Goa and the UK, reading rooms and turning ordinary
               evenings into the ones people talk about for years.
             </p>
-            <p className="mt-4 text-plum/70">
+            <p className="mt-4 text-cream/70">
               Every event gets the same energy: prepared, present, and tuned
               to the crowd in front of me — whether that's two hundred
               wedding guests or a boardroom of executives.
             </p>
           </div>
-          <div className="aspect-[4/5] rounded-3xl bg-gradient-to-br from-lavender-200 via-blush to-lavender-100" />
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem]">
+            <div className="absolute inset-0 bg-gradient-to-br from-lavender-300 via-lavender-500 to-plum" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(250,246,240,0.25),transparent_55%)]" />
+          </div>
         </div>
       </section>
 

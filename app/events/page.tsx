@@ -9,18 +9,18 @@ export const metadata = {
 export default function EventsPage() {
   return (
     <>
-      <section className="px-6 pb-12 pt-16 text-center md:pt-24">
-        <p className="eyebrow text-lavender-600">What I host</p>
-        <h1 className="mt-4 font-display text-4xl text-plum md:text-6xl">
-          Every occasion. <span className="italic text-lavender-600">Every beat.</span>
+      <section className="bg-plum px-6 pb-16 pt-20 text-center md:pt-28">
+        <p className="eyebrow text-gold">What I host</p>
+        <h1 className="mt-4 font-display text-5xl text-cream md:text-7xl">
+          Every occasion. <span className="italic text-lavender-300">Every beat.</span>
         </h1>
-        <p className="mx-auto mt-5 max-w-xl text-plum/70">
+        <p className="mx-auto mt-5 max-w-xl text-cream/70">
           From intimate baptisms to black-tie galas — here's the full range,
           each hosted with the same care and read-the-room energy.
         </p>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      <section className="mx-auto max-w-6xl px-6 py-20">
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
           {events.map((e) => (
             <div
