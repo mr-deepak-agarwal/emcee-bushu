@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Emcee Bushu — Website
 
-## Getting Started
+A high-energy, animated portfolio/booking site for Emcee Bushu (event host, MC
+& choreographer), built with Next.js 16 (App Router), Tailwind CSS v4,
+Framer Motion, and Lenis smooth scroll. Bookings are saved to Supabase.
 
-First, run the development server:
+## 1. Install dependencies
+
+```bash
+npm install
+```
+
+## 2. Connect Supabase (for the booking form)
+
+1. Create a free project at https://supabase.com
+2. In your Supabase project, go to **SQL Editor → New query**, paste the
+   contents of `supabase-schema.sql` (in this folder), and run it. This
+   creates the `bookings` table and locks it down so only the site can
+   submit new inquiries — nobody but you can read them from the public site.
+3. In Supabase, go to **Project Settings → API** and copy:
+   - **Project URL**
+   - **anon / public key**
+4. Copy `.env.local.example` to `.env.local` and paste those values in:
+
+```bash
+cp .env.local.example .env.local
+```
+
+```
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-public-key
+```
+
+Without this step, the booking form will show an error when submitted —
+everything else on the site works fine regardless.
+
+To view submitted bookings later: Supabase dashboard → **Table Editor →
+bookings**.
+
+## 3. Run it locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 4. Swap in real photos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All images are currently styled placeholders (so the layout/animations are
+easy to preview before real photography is ready). They're rendered by
+`components/PlaceholderImage.tsx`. To swap in a real photo, replace a
+`<PlaceholderImage ... />` usage with a Next.js `<Image>` component pointing
+at a file placed in `/public`.
 
-## Learn More
+## 5. Update contact details
 
-To learn more about Next.js, take a look at the following resources:
+WhatsApp number and Instagram handle are currently placeholders pulled from
+the brief — search for `wa.me` and `instagram.com` across `components/` to
+update them with the real ones.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 6. Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Easiest path is Vercel:
 
-## Deploy on Vercel
+```bash
+npx vercel
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Add the two `NEXT_PUBLIC_SUPABASE_*` environment variables in your Vercel
+project settings (Settings → Environment Variables) so the live site can
+talk to Supabase too.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project structure
+
+- `app/page.tsx` — assembles all sections
+- `components/` — one file per section (Hero, About, Services, Events,
+  Gallery, Testimonials, Booking, Nav, Footer) plus shared bits
+  (`SmoothScroll`, `SpotlightTrail`, `PlaceholderImage`)
+- `lib/content.ts` — all site copy in one place, easy to edit without
+  touching component code
+- `lib/supabase.ts` — Supabase client setup
+- `supabase-schema.sql` — run once in Supabase to create the bookings table

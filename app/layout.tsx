@@ -1,36 +1,26 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
+import SpotlightTrail from "@/components/SpotlightTrail";
 
 export const metadata: Metadata = {
-  title: "Aria Kapoor | International Anchor, Emcee & Event Host",
+  title: "Emcee Bushu — Host. Perform. Unforgettable.",
   description:
-    "Aria Kapoor is a world-class international anchor, emcee, moderator, and corporate event host. 18+ years, 42+ countries, 800+ events.",
-  keywords: ["international anchor", "professional emcee", "corporate event host", "conference moderator", "luxury wedding host"],
-  openGraph: {
-    title: "Aria Kapoor | International Anchor & Emcee",
-    description: "Creating unforgettable experiences across global stages.",
-    type: "website",
-  },
+    "Emcee Bushu is an international event host, MC and choreographer based in Goa, booking worldwide for weddings, corporate events and celebrations.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en">
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Aria Kapoor",
-              jobTitle: "Professional Anchor, Emcee & Event Host",
-              url: "https://ariakapoor.com",
-            }),
-          }}
-        />
-      </head>
-      <body>{children}</body>
+    <html lang="en" className="h-full antialiased">
+      <body className="min-h-full flex flex-col bg-paper text-ink font-body overflow-x-hidden">
+        <SmoothScroll />
+        <SpotlightTrail />
+        {children}
+      </body>
     </html>
   );
 }
