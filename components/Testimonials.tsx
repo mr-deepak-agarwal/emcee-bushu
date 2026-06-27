@@ -9,13 +9,13 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative py-32 bg-nude/40 overflow-hidden"
+      className="relative py-32 md:py-44 bg-nude/40 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10 mb-14">
         <p className="font-mono text-xs tracking-[0.2em] uppercase text-clay mb-5">
           [ HAPPY CLIENT FEEDBACK ]
         </p>
-        <h2 className="font-display text-4xl md:text-5xl leading-[1.05]">
+        <h2 className="font-display text-5xl md:text-6xl leading-[1.0] font-medium">
           They booked an emcee.{" "}
           <span className="italic text-clay">They got a memory.</span>
         </h2>

@@ -2,22 +2,24 @@
 
 import { useEffect, useRef, useState } from "react";
 
-function getIsEligible() {
-  if (typeof window === "undefined") return false;
-  const isFinePointer = window.matchMedia("(pointer: fine)").matches;
-  const prefersReduced = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-  return isFinePointer && !prefersReduced;
-}
-
 export default function SpotlightTrail() {
   const dotRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
-  const [enabled] = useState(getIsEligible);
+  const [mounted, setMounted] = useState(false);
+  const [eligible, setEligible] = useState(false);
 
   useEffect(() => {
-    if (!enabled) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- standard client-mount detection to avoid SSR hydration mismatch; not an external-system sync
+    setMounted(true);
+    const isFinePointer = window.matchMedia("(pointer: fine)").matches;
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    setEligible(isFinePointer && !prefersReduced);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted || !eligible) return;
 
     let mx = window.innerWidth / 2;
     let my = window.innerHeight / 2;
@@ -48,9 +50,9 @@ export default function SpotlightTrail() {
       window.removeEventListener("mousemove", onMove);
       cancelAnimationFrame(raf);
     };
-  }, [enabled]);
+  }, [mounted, eligible]);
 
-  if (!enabled) return null;
+  if (!mounted || !eligible) return null;
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[60] hidden md:block mix-blend-multiply">

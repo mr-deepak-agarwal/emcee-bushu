@@ -3,8 +3,14 @@
 import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Loader2, CheckCircle2, AlertCircle, MessageCircle } from "lucide-react";
-import { supabase } from "@/lib/supabase";
+import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { eventTypeOptions } from "@/lib/content";
+import ParallaxField, { FloatItem } from "./ParallaxField";
+
+const floatItems: FloatItem[] = [
+  { shape: "ticket", top: "6%", left: "4%", size: 50, speed: 1.1, color: "var(--color-clay)", rotateSpeed: -0.3 },
+  { shape: "star", top: "85%", left: "92%", size: 24, speed: 1.4, color: "var(--color-spotlight)", rotateSpeed: 0.6 },
+];
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -37,6 +43,14 @@ export default function Booking() {
       return;
     }
 
+    if (!isSupabaseConfigured) {
+      setStatus("error");
+      setErrorMsg(
+        "Booking storage isn't connected yet (Supabase keys missing). Use WhatsApp below for now — see the README to finish setup."
+      );
+      return;
+    }
+
     const { error } = await supabase.from("bookings").insert([payload]);
 
     if (error) {
@@ -52,23 +66,36 @@ export default function Booking() {
   }
 
   return (
-    <section id="book" className="relative py-32">
-      <div className="max-w-5xl mx-auto px-6 md:px-10">
-        <div className="text-center mb-14">
+    <section id="book" className="relative py-32 md:py-44 overflow-hidden">
+      <ParallaxField items={floatItems} />
+      <div className="max-w-5xl mx-auto px-6 md:px-10 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-14"
+        >
           <p className="font-mono text-xs tracking-[0.2em] uppercase text-clay mb-5">
             [ NOW BOOKING — 2026 ]
           </p>
-          <h2 className="font-display text-4xl md:text-5xl leading-[1.05]">
+          <h2 className="font-display text-5xl md:text-6xl leading-[1.0] font-medium">
             Let&apos;s make your event{" "}
             <span className="italic text-clay">extraordinary.</span>
           </h2>
-          <p className="text-ink-soft mt-4 max-w-lg mx-auto">
+          <p className="text-ink-soft mt-4 max-w-lg mx-auto text-lg">
             Tell me a bit about what you&apos;re planning. I reply to every
             inquiry personally, usually within a day.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="bg-paper-2 border border-line rounded-[2px] p-6 md:p-12">
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="bg-paper-2 border border-line rounded-[2px] p-6 md:p-12"
+        >
           {status === "success" ? (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -181,7 +208,7 @@ export default function Booking() {
               </div>
             </form>
           )}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import SpotlightTrail from "@/components/SpotlightTrail";
+import Curtain from "@/components/Curtain";
 
 export const metadata: Metadata = {
   title: "Emcee Bushu — Host. Perform. Unforgettable.",
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col bg-paper text-ink font-body overflow-x-hidden">
+        <Curtain />
         <SmoothScroll />
         <SpotlightTrail />
         {children}
